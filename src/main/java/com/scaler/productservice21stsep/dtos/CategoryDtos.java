@@ -1,2 +1,10 @@
-package com.scaler.productservice21stsep.dtos;public class CategoryDtos {
+package com.scaler.productservice21stsep.dtos;
+import lombok.*;
+@Getter
+@Setter
+@ToString
+public class CategoryDtos {
+    private String name;
+    private String description;
+
 }

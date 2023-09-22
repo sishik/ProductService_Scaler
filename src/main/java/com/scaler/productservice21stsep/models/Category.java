@@ -1,2 +1,7 @@
-package com.scaler.productservice21stsep.models;public class Category {
+package com.scaler.productservice21stsep.models;
+import java.util.List;
+public class Category extends BaseModel{
+    private String name;
+    private String description;
+    private List<Product>products;
 }
