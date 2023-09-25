@@ -1,11 +1,14 @@
 package com.scaler.productservice21stsep.services;
 
+import com.scaler.productservice21stsep.models.Category;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 public interface CategoryService {
 
-    String getAllCategories();
+    List<Category> getAllCategories();
 
-    String getSingleCategory(Long categoryId);
+    Category getSingleCategory(Long categoryId);
 }

@@ -12,4 +12,5 @@ public class Productdtos {
     private double Price;
     private String imageUrl;
     private String category;
+    private boolean is_deleted;
 }

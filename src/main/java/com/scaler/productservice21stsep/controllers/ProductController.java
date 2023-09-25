@@ -28,16 +28,23 @@ public class ProductController {
     @PostMapping()
     public ResponseEntity<Product>createProduct(@RequestBody Productdtos productdtos) {
         Product newProduct = productService.createProduct(productdtos);
-        ResponseEntity<Product> response = new ResponseEntity<>(newProduct,org.springframework.http.HttpStatus.CREATED);
-        return response;
+        ResponseEntity<Product> response1 = new ResponseEntity<>(newProduct,org.springframework.http.HttpStatus.CREATED);
+        return response1;
     }
     @PutMapping("/{productId}")
-    public String updateProduct(@PathVariable("productId") Long productId,Productdtos productdetails) {
-        return "updating product by id";
+    public ResponseEntity<Product>updateProduct(@PathVariable("productId") Long productId,@RequestBody Productdtos productdetails) {
+        Product updatedProduct = productService.updateProduct(productId,productdetails);
+        ResponseEntity<Product> response2 = new ResponseEntity<>(updatedProduct,org.springframework.http.HttpStatus.OK);
+        return response2;
+
+        //return "updating product by id";
     }
     @DeleteMapping("/{productId}")
-    public String deleteProduct(@PathVariable("productId") Long productId) {
-        return "deleting product by Id";
+    public ResponseEntity<Product>deleteProduct(@PathVariable("productId") Long productId) {
+        Product deletedProduct = productService.deleteProduct(productId);
+        ResponseEntity<Product> response3 = new ResponseEntity<>(deletedProduct,org.springframework.http.HttpStatus.OK);
+        return response3;
+        //return "deleting product by id";
     }
 
 }

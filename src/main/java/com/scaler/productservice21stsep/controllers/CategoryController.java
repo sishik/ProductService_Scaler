@@ -1,7 +1,9 @@
 package com.scaler.productservice21stsep.controllers;
 
 import com.scaler.productservice21stsep.dtos.CategoryDtos;
+import com.scaler.productservice21stsep.models.Category;
 import com.scaler.productservice21stsep.services.CategoryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
@@ -18,8 +20,10 @@ public class CategoryController {
         return "returning all categories";
     }
     @GetMapping("/{categoryId}")
-    public String getSingleCategory(@PathVariable("categoryId") Long categoryId) {
-        return "returning single category by id";
+    public ResponseEntity<Category> getSingleCategory(@PathVariable("categoryId") Long categoryId) {
+        Category category = categoryService.getSingleCategory(categoryId);
+        return ResponseEntity.ok(category);
+        //return "returning single category by id";
     }
     @PostMapping
     public String createCategory(@RequestBody CategoryDtos categoryDtos) {

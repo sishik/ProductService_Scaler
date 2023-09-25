@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product createProduct(Productdtos productdtos);
 
-    Product updateProduct(Long productId, Product productdetails);
+    Product updateProduct(Long productId, Productdtos productdetails);
 
-    boolean deleteProduct(Long productId);
+    Product deleteProduct(Long productId);
 }

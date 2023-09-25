@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class FakeStoreProductServiceImpl implements ProductService{
@@ -75,12 +77,45 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product updateProduct(Long productId, Product productdetails) {
-        return null;
+    public Product updateProduct(Long productId, Productdtos productdetails) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+
+        // Define the URL with the {Id} placeholder for the productId
+        String url = "https://fakestoreapi.com/products/{Id}";
+
+        // Create a map for URL parameters (in this case, for the {Id} placeholder)
+        Map<String, Long> urlParams = new HashMap<>();
+        urlParams.put("Id", productId);
+
+        // Make a PUT request to update the product
+        restTemplate.put(url, productdetails, urlParams);
+
+        // Now that the update has been performed, create a Product object manually
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId(productId); // Assuming productId remains the same
+        updatedProduct.setProductTitle(productdetails.getTitle());
+        updatedProduct.setProductDescription(productdetails.getDescription());
+        updatedProduct.setProductPrice(productdetails.getPrice());
+        Category category = new Category();
+        category.setCategoryTitle(productdetails.getCategory());
+        updatedProduct.setProductCategory(category);
+        updatedProduct.setProductImageUrl(productdetails.getImageUrl());
+
+        return updatedProduct;
     }
 
     @Override
-    public boolean deleteProduct(Long productId) {
-        return false;
+    public Product deleteProduct(Long productId) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        // Define the URL with the {Id} placeholder for the productId
+        String url = "https://fakestoreapi.com/products/{Id}";
+        restTemplate.delete(url, productId);
+        Product deletedProduct = new Product();
+        deletedProduct.setProductId(productId);
+        deletedProduct.set_deleted(true);
+        return deletedProduct;
+
+
+
     }
 }
