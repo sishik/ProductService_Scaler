@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class FakeStoreCategoryServiceImpl implements CategoryService{
@@ -16,7 +17,15 @@ public class FakeStoreCategoryServiceImpl implements CategoryService{
     }
     @Override
     public List<Category> getAllCategories() {
-        return null;
+RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<CategoryDtos[]> lists = restTemplate.getForEntity("https://fakestoreapi.com/products/categories",CategoryDtos[].class);
+        List<Category>list_of_category = new ArrayList<>();
+        for(CategoryDtos categoryDtos:lists.getBody()){
+            Category category = new Category();
+            category.setCategoryTitle(categoryDtos.getName());
+            list_of_category.add(category);
+        }
+        return list_of_category;
     }
 
     @Override

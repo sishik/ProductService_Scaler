@@ -100,6 +100,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
         category.setCategoryTitle(productdetails.getCategory());
         updatedProduct.setProductCategory(category);
         updatedProduct.setProductImageUrl(productdetails.getImageUrl());
+        updatedProduct.setUpdated_at(productdetails.getUpdated_at());
 
         return updatedProduct;
     }
@@ -114,8 +115,5 @@ public class FakeStoreProductServiceImpl implements ProductService{
         deletedProduct.setProductId(productId);
         deletedProduct.set_deleted(true);
         return deletedProduct;
-
-
-
     }
 }

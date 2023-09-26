@@ -1,6 +1,9 @@
 package com.scaler.productservice21stsep.dtos;
 import jakarta.annotation.Nullable;
 import lombok.*;
+
+import java.sql.Date;
+
 @Getter
 @Setter
 @ToString
@@ -13,4 +16,6 @@ public class Productdtos {
     private String imageUrl;
     private String category;
     private boolean is_deleted;
+    private Date created_at;
+    private Date updated_at;
 }

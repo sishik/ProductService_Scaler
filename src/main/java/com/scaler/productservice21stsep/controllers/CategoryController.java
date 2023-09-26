@@ -6,7 +6,7 @@ import com.scaler.productservice21stsep.services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products/categories")
@@ -16,13 +16,13 @@ public class CategoryController {
         this.categoryService=categoryService;
     }
     @GetMapping()
-    public String getAllCategories() {
-        return "returning all categories";
+    public List<Category>getAllCategories() {
+        return categoryService.getAllCategories();
     }
     @GetMapping("/{categoryId}")
     public ResponseEntity<Category> getSingleCategory(@PathVariable("categoryId") Long categoryId) {
-        Category category = categoryService.getSingleCategory(categoryId);
-        return ResponseEntity.ok(category);
+        ResponseEntity<Category> response = new ResponseEntity<>(categoryService.getSingleCategory(categoryId),org.springframework.http.HttpStatus.OK);
+        return response;
         //return "returning single category by id";
     }
     @PostMapping

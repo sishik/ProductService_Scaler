@@ -3,8 +3,10 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDtos {
     private String name;
-    private String description;
+    //private String description;
 
 }
